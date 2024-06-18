@@ -1,0 +1,6 @@
+# this is for use with this REST client
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+# other options include Postman, Insomnia
+
+### Root
+http://localhost:3000

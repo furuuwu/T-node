@@ -1,0 +1,3 @@
+Run the file you want:
+
+node 0.mjs

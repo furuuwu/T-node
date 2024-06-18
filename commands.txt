@@ -1,0 +1,11 @@
+Install the required dependencies:
+
+npm install
+
+Change directory into the folder you want:
+
+cd express
+
+The logical progression is:
+express
+mysql2

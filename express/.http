@@ -1,0 +1,66 @@
+###
+GET http://localhost:3000/
+
+### same as
+curl http://localhost:3000/
+
+###
+GET http://localhost:3000/hello-world
+
+###
+GET http://localhost:3000/1
+
+###
+GET http://localhost:3000/?name=Ricardo
+
+###
+GET http://localhost:3000/users
+
+###
+GET http://localhost:3000/routeDoesNotExist
+
+###
+GET http://localhost:3000/tableDoesNotExist
+
+###
+GET http://localhost:3000/users/1
+
+###
+GET http://localhost:3000/users/1000
+
+###
+GET http://localhost:3000/users/?isReal=true
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "João",
+    "age": 2,
+    "isReal": true
+}
+
+# be careful writing the JSON. It can't have a comma (,) at the end!
+
+### same as
+curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"name": "João", "age": 2, "isReal": true}'
+
+###
+PUT http://localhost:3000/users/3
+Content-Type: application/json
+
+{
+    "newName": "Ricardo",
+    "this-person-is-dumb": true
+}
+
+### same as
+curl -X PUT http://localhost:3000/users/3 -H "Content-Type: application/json" -d '{"newName": "Ricardo", "this-person-is-dumb": true}'
+
+
+###
+DELETE http://localhost:3000/users/1
+
+###
+DELETE http://localhost:3000/users

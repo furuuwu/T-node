@@ -1,6 +1,6 @@
 // Creating a server ("Express app")
 
-import express from 'express';
+const express = require('express');
 
 const app = express();
 

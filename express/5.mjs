@@ -1,14 +1,5 @@
-/*
-Example of
-responding to a POST with a JSON body
-by using a middleware to parse the JSON
-*/
-
-/*
-Adding app.use(express.json()); will allow your server 
-to parse JSON payloads sent in the body of POST requests, 
-making req.body properly populated.
-*/
+// Responding to a POST with a JSON body
+// by using a middleware to parse the JSON
 
 import express from 'express';
 
@@ -40,14 +31,7 @@ app.get("/users", (req, res) => {
 });
 
 app.post("/users", (req, res) => {
-    // eg. body
-    /*
-    {
-    "name": "João",
-    "age": 2,
-    "isReal": true
-    }
-    */
+
     console.log(`Received a ${req.method} request at the URL: ${req.url}`);
     console.log("Request headers: " + JSON.stringify(req.headers, null, 2));
     console.log("Request body: " + JSON.stringify(req.body, null, 2));

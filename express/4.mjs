@@ -1,21 +1,5 @@
-/*
-Example of
-responding to a POST with a JSON body
-by manually parsing the JSON
-Eg. JSON body:
-{
-    "name": "João",
-    "age": 2,
-    "isReal": true
-}
-*/
-
-/*
-the req.on('data', ...) event handler collects the incoming data chunks, 
-and the req.on('end', ...) event handler processes the complete body once all chunks have been received. 
-The body is then parsed from a JSON string into a JavaScript object using JSON.parse(). 
-This way, you can handle JSON parsing without relying on middleware.
-*/
+// Responding to a POST with a JSON body
+// by manually parsing the JSON
 
 import express from 'express';
 

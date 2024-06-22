@@ -1,7 +1,4 @@
-/*
-Example of
-responding to a DELETE with a JSON body.
-*/
+// Reponse to a DELETE
 
 import express from 'express';
 

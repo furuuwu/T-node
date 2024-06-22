@@ -1,7 +1,4 @@
-/*
-Example of
-responding to a PUT with a JSON body.
-*/
+// Responding to PUT (with a JSON body)
 
 import express from 'express';
 
@@ -46,13 +43,7 @@ app.post("/users", (req, res) => {
 });
 
 app.put("/users/:id", (req, res) => {
-    // eg.
-    /*
-    {
-        "newName": "Ricardo",
-        "this-person-is-dumb": true
-    }
-    */
+
     console.log(`Received a ${req.method} request at the URL: ${req.url}`);
     console.log("Request headers: " + JSON.stringify(req.headers, null, 2));
     console.log("Request body: " + JSON.stringify(req.body, null, 2));

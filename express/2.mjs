@@ -1,9 +1,6 @@
-/*
-Example of
-responding to a GET on another route. eg. /hello-world
-route with a parameter. eg. /1
-route with a query string. eg. /?name=Ricardo
-*/
+// responding to a GET on another route. eg. /hello-world
+// route with a parameter. eg. /1
+// route with a query string. eg. /?name=Ricardo
 
 import express from 'express';
 

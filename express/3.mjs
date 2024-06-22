@@ -1,7 +1,4 @@
-/*
-Example of
-responding to a GET by sending JSON
-*/
+// Responding to a GET by sending JSON
 
 import express from 'express';
 
@@ -62,11 +59,6 @@ app.get("/users/:id", (req, res) => {
     // const user = userList[id] // not what you want
     // const user = userList.filter(user => user.id == id); // is one option
     const user = userList.find(user => user.id == id);
-    /*
-    The find() method of Array instances returns the first element in the provided array
-    that satisfies the provided testing function. If no values satisfy the testing function, 
-    undefined is returned.
-    */
 
     if (user == undefined) {
         // sent the status code 404 - Not Found

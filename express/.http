@@ -64,3 +64,24 @@ DELETE http://localhost:3000/users/1
 
 ###
 DELETE http://localhost:3000/users
+
+###
+GET http://localhost:3001/api/users?id=4&token=sdfa3&geo=us
+
+###
+POST http://localhost:3001/submit
+Content-Type: application/json
+
+{
+    "name": "Ricardo",
+    "age": -11111
+}
+
+###
+POST http://localhost:3001/submit-form
+Content-Type: application/x-www-form-urlencoded
+
+{
+    "name": "Ricardo",
+    "age": -11111
+}

@@ -1,26 +1,1796 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T-node</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="index.js" defer></script>
 </head>
-
 <body>
+<div class="wrapper">
     <div class="container">
         <h1>Search Files</h1>
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="Enter word to search">
-            <button onclick="searchFiles()">Search</button>
         </div>
         <div class="results">
             <h2>Results:</h2>
-            <ul id="resultsList"></ul>
+            <ul id="resultsList">
+                <!-- File items will be dynamically generated here -->
+                <li class="file-content" data-file-name="docs\CommonJS\operations.js">
+                        <a href="docs\CommonJS\operations.js" target="_blank">docs\CommonJS\operations.js</a>
+                        <div style="display:none">function mySum(a, b) {
+    const r = a + b
+    console.log(r)
+    return r
+}
+function myMult(a, b) {
+    const r = a * b
+    console.log(r)
+    return r
+}
+
+module.exports = {
+    mySum: mySum,
+    myMult
+};</div>
+                    </li>
+<li class="file-content" data-file-name="docs\CommonJS\sum.js">
+                        <a href="docs\CommonJS\sum.js" target="_blank">docs\CommonJS\sum.js</a>
+                        <div style="display:none">const op = require('./operations')
+
+op.mySum(2, 3)
+op.myMult(2, 3)</div>
+                    </li>
+<li class="file-content" data-file-name="docs\ES6\operations.mjs">
+                        <a href="docs\ES6\operations.mjs" target="_blank">docs\ES6\operations.mjs</a>
+                        <div style="display:none">function mySum(a, b) {
+    const r = a + b
+    console.log(r)
+    return r
+}
+function myMult(a, b) {
+    const r = a * b
+    console.log(r)
+    return r
+}
+
+export default mySum
+export { myMult, mySum }</div>
+                    </li>
+<li class="file-content" data-file-name="docs\ES6\sum.mjs">
+                        <a href="docs\ES6\sum.mjs" target="_blank">docs\ES6\sum.mjs</a>
+                        <div style="display:none">// default import
+import ms from './operations.mjs'
+let s = ms(2, 3)
+
+// individual named imports
+import { mySum, myMult } from './operations.mjs'
+s = mySum(2, 3)
+let m = myMult(2, 3)</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\0.js">
+                        <a href="docs\express\0.js" target="_blank">docs\express\0.js</a>
+                        <div style="display:none">// Creating a server ("Express app")
+
+const express = require('express');
+
+const app = express();
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\0.md">
+                        <a href="docs\express\0.md" target="_blank">docs\express\0.md</a>
+                        <div style="display:none"># 0
+
+## Running
+
+es6 version:
+
+`node 0.mjs`
+
+commonjs version:
+
+`node 0.js`
+
+## Installing express
+
+https://www.npmjs.com/package/express
+
+`npm i express@^4.0.0`
+</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\0.mjs">
+                        <a href="docs\express\0.mjs" target="_blank">docs\express\0.mjs</a>
+                        <div style="display:none">// Creating a server ("Express app")
+
+import express from 'express';
+
+const app = express();
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\1.js">
+                        <a href="docs\express\1.js" target="_blank">docs\express\1.js</a>
+                        <div style="display:none">// Responding to a incoming GET request on the root ('/')
+
+const express = require('express');
+
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send("Hello World!");
+})
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}/`)
+})</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\1.md">
+                        <a href="docs\express\1.md" target="_blank">docs\express\1.md</a>
+                        <div style="display:none"># 1
+
+`JSON.stringify(value, replacer, space)`
+
+Converts a JavaScript object or value to a JSON string.
+    
+- value: The value to convert to a JSON string.
+- replacer: A function that alters the behavior of the stringification process, or an array of String and Number objects that serve as a whitelist for selecting/filtering the properties of the value object to be included in the JSON string.
+- space: A String or Number that's used to insert white space into the output JSON string for readability purposes. If this is a number, it indicates the number of space characters to use as white space; this number is capped at 10.
+If this is a string, its maximum length is 10; the string is used as white space. For readability, 2 is often used.
+
+Using `JSON.stringify` with the second parameter null and third parameter 2 (for indentation) makes the output more readable.</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\1.mjs">
+                        <a href="docs\express\1.mjs" target="_blank">docs\express\1.mjs</a>
+                        <div style="display:none">// Responding to a incoming GET request on the root ('/')
+
+import express from 'express';
+
+const app = express();
+
+app.get('/', (req, res) => {
+
+    console.log(`Received a ${req.method} request at the URL: ${req.url}`);
+
+    console.log("Request headers: " + req.headers); // [object Object]
+    // to be able to see this object, convert it to a string
+
+    console.log("Request headers: " + JSON.stringify(req.headers, null, 2));
+
+    console.log("Request body: " + req.body); // undefined in the case of a GET
+    console.log("Request body: " + JSON.stringify(req.body, null, 2));
+
+    console.log("Request path: " + req.path);
+    console.log("Request hostname: " + req.hostname);
+    console.log("Request ip: " + req.ip);
+
+    console.log("Request query: " + JSON.stringify(req.query, null, 2));
+
+    // respond with a Hello World!
+    res.send("Hello World!");
+})
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}/`)
+})</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\10.js">
+                        <a href="docs\express\10.js" target="_blank">docs\express\10.js</a>
+                        <div style="display:none">// Information about the express server
+
+const express = require('express');
+const app = express();
+
+const PORT = 3001;
+const server = app.listen(PORT, () => {
+    const server_address = JSON.stringify(server.address(), null, 2);
+    console.log("server adress: " + server_address);
+    console.log("server max connections: " + server.maxConnections);
+    console.log("server timeout: " + server.timeout);
+    console.log("server request timeout: " + server.requestTimeout);
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\11.js">
+                        <a href="docs\express\11.js" target="_blank">docs\express\11.js</a>
+                        <div style="display:none">// Parse request bodies
+
+const express = require('express');
+const app = express();
+
+app.use(express.json()); // for parsing JSON
+app.use(express.urlencoded({ extended: true })); // for parsing URL-encoded data
+
+// Example endpoint to handle a POST request with JSON body
+app.post('/submit', (req, res) => {
+    const data = req.body;
+    console.log('Received data:', data);
+    res.send('Data received successfully');
+});
+
+// Example endpoint to handle a POST request with URL-encoded body
+app.post('/submit-form', (req, res) => {
+    const data = req.body;
+    console.log('Received URL-encoded data:', data);
+    res.send('URL-encoded data received successfully');
+});
+
+
+const PORT = 3001;
+const server = app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}/`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\11.md">
+                        <a href="docs\express\11.md" target="_blank">docs\express\11.md</a>
+                        <div style="display:none"># 11
+
+If your application handles form submissions, JSON payloads, or any other request body data, you will need to use a body parser.
+
+As of Express 4.16.0, the body parser middleware is included with Express and can be used directly without installing a separate package.
+
+Before that, you would install a module, a popular one was `body-parser`
+
+You would do:
+
+    const bodyParser = require('body-parser');
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\12.js">
+                        <a href="docs\express\12.js" target="_blank">docs\express\12.js</a>
+                        <div style="display:none">// Serving static files
+
+const express = require('express');
+const app = express();
+const path = require('path');
+
+
+// Serve static files from the "12-static" directory
+// http://localhost:3001/byebye.html
+app.use(express.static(path.join(__dirname, '12-static')));
+
+// Serve static files from the "12-static-route" directory at the "/12-static-route" path
+app.use('/12-static-route', express.static(path.join(__dirname, '12-static-route')));
+// http://localhost:3001/12-static-route/cat.jpg
+
+const PORT = 3001;
+const server = app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}/`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\13.js">
+                        <a href="docs\express\13.js" target="_blank">docs\express\13.js</a>
+                        <div style="display:none">// Server-side rendering with EJS
+
+const express = require('express');
+const path = require('path');
+const app = express();
+
+// Set EJS as the templating engine
+app.set('view engine', 'ejs');
+
+// Set the directory where the views are stored
+app.set('views', path.join(__dirname, '13-ejs-views'));
+
+// Example route using EJS template
+app.get('/', (req, res) => {
+    res.render('home', { title: 'Home Page', message: 'Welcome to the Home Page!' });
+});
+
+const PORT = 3001;
+const server = app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}/`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\13.md">
+                        <a href="docs\express\13.md" target="_blank">docs\express\13.md</a>
+                        <div style="display:none"># 13
+
+## Templating engines
+
+- EJS (Embedded JavaScript)
+    
+    One of the most popular templating engines for Express. It's simple and easy to use, similar to traditional PHP or ASP templates.
+
+- Pug (formerly Jade)
+
+    Known for its clean and minimal syntax, Pug is powerful and can be used to create complex layouts with ease
+
+- Handlebars
+    
+    Known for its simplicity and logic-less templates, Handlebars is a popular choice for its readability and maintainability.
+
+## EJS
+
+`npm install ejs`
+
+and install the VSCode extension `digitalbrainstem.javascript-ejs-support`
+
+## Handlebars
+
+`npm install express-handlebars`
+
+VSCode extension `itsmeadarsh.vsc-handlebars-ext`</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\14.js">
+                        <a href="docs\express\14.js" target="_blank">docs\express\14.js</a>
+                        <div style="display:none">// Server-side rendering with express-handlebars
+
+const express = require('express');
+const path = require('path');
+const app = express();
+
+// Required module
+const exphbs = require('express-handlebars');
+
+// Set Handlebars as the templating engine
+app.engine('handlebars', exphbs.engine({
+    layoutsDir: path.join(__dirname, '14-handlebars-views/'), // Specify the layouts directory
+    defaultLayout: 'home', // Specify the default layout file ('main' is the file name without extension)
+    extname: '.handlebars' // Specify the file extension of the templates
+}));
+app.set('view engine', 'handlebars');
+
+// Set the directory where the views are stored
+app.set('views', path.join(__dirname, '14-handlebars-views'));
+
+// Example route using Handlebars template
+app.get('/', (req, res) => {
+    res.render('home', { title: 'Home Page', message: 'Welcome to the Home Page!' });
+});
+
+const PORT = 3001;
+const server = app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}/`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\15.js">
+                        <a href="docs\express\15.js" target="_blank">docs\express\15.js</a>
+                        <div style="display:none">// Cookies with cookie-parser
+
+const express = require('express');
+const cookieParser = require('cookie-parser');
+
+const app = express();
+
+// Use cookie-parser middleware
+app.use(cookieParser());
+
+// Example route to set a cookie
+app.get('/setcookie', (req, res) => {
+    let options = {
+        maxAge: 1000 * 60 * 15, // expires after 15min
+        httpOnly: true, // access restrictions
+    };
+    res.cookie('username', 'john', options);
+    res.send('Cookie has been set');
+});
+
+// Example route to read a cookie
+app.get('/getcookieSigned', (req, res) => {
+    const username = req.cookies.username;
+    res.send('Username: ' + username);
+});
+
+// Start the server on port 3000
+const PORT = 3001;
+const server = app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}/`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\15.md">
+                        <a href="docs\express\15.md" target="_blank">docs\express\15.md</a>
+                        <div style="display:none"># 15
+
+## cookie-parser
+
+widely-used and convenient middleware for handling cookies in Express applications
+
+`npm install cookie-parser`
+
+## Other options
+
+- cookie module
+
+This is a lightweight alternative to cookie-parser
+
+`npm install cookie`
+
+- from the http module
+
+    const http = require('http');
+    const server = http.createServer((req, res) => {
+    const cookies = req.headers.cookie;
+    // Set cookie
+        res.setHeader('Set-Cookie', 'username=john; Max-Age=900000; HttpOnly');
+        res.end('Cookie has been set');
+    });
+
+    server.listen(3000, () => {
+        console.log('Server is running on port 3000');
+    });
+</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\16.js">
+                        <a href="docs\express\16.js" target="_blank">docs\express\16.js</a>
+                        <div style="display:none">// Cookies with cookie-parser, signed version
+
+const express = require('express');
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
+
+const app = express();
+
+// Signed cookies
+const cookieSecret = process.env.COOKIE_SECRET;
+app.use(cookieParser(cookieSecret));
+
+app.use((req, res, next) => {
+
+    // Using optional chaining to safely access the cookie
+    let cookie = req.cookies?.cookieName;
+
+    const options = {
+        maxAge: 1000 * 60 * 60, // expires after 1h
+        httpOnly: true, // access restrictions
+    };
+
+    if (cookie === undefined) {
+        let randomNumber = Math.random().toString();
+        randomNumber = randomNumber.substring(2, randomNumber.length);
+        res.cookie('cookieName', randomNumber, options);
+        console.log('cookie was created!');
+    } else {
+        // cookie was already present
+        console.log('cookie exists', cookie);
+    }
+
+    // Call next() to continue processing the request
+    next();
+})
+
+app.get('/', (req, res) => {
+    res.send('Hello');
+});
+
+
+// Start the server on port 3000
+const PORT = 3001;
+const server = app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}/`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\16.md">
+                        <a href="docs\express\16.md" target="_blank">docs\express\16.md</a>
+                        <div style="display:none"># 16
+
+you can sign cookies based on a secret (environmental variable)
+
+`npm install dotenv`</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\2.mjs">
+                        <a href="docs\express\2.mjs" target="_blank">docs\express\2.mjs</a>
+                        <div style="display:none">// responding to a GET on another route. eg. /hello-world
+// route with a parameter. eg. /1
+// route with a query string. eg. /?name=Ricardo
+
+import express from 'express';
+
+const app = express();
+
+app.get('/hello-world', (req, res) => {
+
+    console.log("Request path: " + req.path); // /hello-world
+    res.send("Hello World!");
+});
+
+app.get('/:number', (req, res) => {
+
+    // reading a request parameter
+    console.log("Request parameters: " + req.params);
+    console.log("Request parameters: " + JSON.stringify(req.params, null, 2));
+
+    const number = req.params.number;
+    res.send(number);
+});
+
+app.get('/', (req, res) => {
+
+    // reading a request query
+    console.log("Request query: " + req.query);
+    console.log("Request parameters: " + JSON.stringify(req.query, null, 2));
+
+    const name = req.query.name;
+    res.send(name);
+})
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+})</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\3.md">
+                        <a href="docs\express\3.md" target="_blank">docs\express\3.md</a>
+                        <div style="display:none"># 3
+
+The `find()` method of Array instances returns the first element in the provided array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned.</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\3.mjs">
+                        <a href="docs\express\3.mjs" target="_blank">docs\express\3.mjs</a>
+                        <div style="display:none">// Responding to a GET by sending JSON
+
+import express from 'express';
+
+const app = express();
+
+let userList = [
+    {
+        id: 1,
+        name: "Ric",
+        age: 31,
+        isDumb: true
+    },
+    {
+        id: 2,
+        name: "Ricarda",
+        age: 32,
+        isReal: false,
+        isDumb: true
+    },
+    {
+        id: 3,
+        name: "Maria",
+        age: -90,
+        isReal: true
+    }
+];
+
+app.get("/users", (req, res) => {
+    // eg. /users
+    // eg. /users/ (same thing)
+    // eg. /users/?isReal=true
+
+    // read the query string
+    console.log("Request parameters: " + JSON.stringify(req.query, null, 2));
+    const isReal_str = req.query.isReal;
+    // remmember that a query string is text
+    const isReal = Boolean(isReal_str);
+
+    // filter the users
+    const filteredList = userList.filter(user => {
+        return user.isReal == isReal;
+    })
+
+    // send the filtered list
+    res.json(filteredList);
+});
+
+app.get("/users/:id", (req, res) => {
+    // eg. /users/1
+
+    // read the parameter
+    console.log("Request parameters: " + JSON.stringify(req.params, null, 2));
+    const id_str = req.params.id;
+    // cast the id to the correct type
+    const id = Number(id_str)
+
+    // select the user
+    // const user = userList[id] // not what you want
+    // const user = userList.filter(user => user.id == id); // is one option
+    const user = userList.find(user => user.id == id);
+
+    if (user == undefined) {
+        // sent the status code 404 - Not Found
+        res.status(404);
+        res.json('I don\'t have that');
+    } else {
+        // send the user
+        // sent the status code 200 - OK, which is the default one
+        res.json(user);
+    }
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\4.md">
+                        <a href="docs\express\4.md" target="_blank">docs\express\4.md</a>
+                        <div style="display:none"># 4
+
+eg. JSON body:
+
+    {
+        "name": "João",
+        "age": 2,
+        "isReal": true
+    }
+
+the `req.on('data', ...)` event handler collects the incoming data chunks, 
+and the `req.on('end', ...)` event handler processes the complete body once all chunks have been received. 
+The body is then parsed from a JSON string into a JavaScript object using `JSON.parse()`. 
+This way, you can handle JSON parsing without relying on middleware.</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\4.mjs">
+                        <a href="docs\express\4.mjs" target="_blank">docs\express\4.mjs</a>
+                        <div style="display:none">// Responding to a POST with a JSON body
+// by manually parsing the JSON
+
+import express from 'express';
+
+const app = express();
+
+let userList = [
+    {
+        name: "Ric",
+        age: 31,
+        isDumb: true
+    },
+    {
+        name: "Ricarda",
+        age: 32,
+        isReal: false,
+        isDumb: true
+    },
+    {
+        name: "Maria",
+        age: -90,
+    }
+];
+
+app.get("/users", (req, res) => {
+    res.json(userList);
+});
+
+app.post("/users", (req, res) => {
+    // read the data sent by the client
+    // here i want to manually parse the incoming request body
+    let body = '';
+
+    // Listen to data event to accumulate chunks of data
+    req.on('data', chunk => {
+        body += chunk.toString(); // convert Buffer to string
+    });
+
+    // Listen to end event to parse the accumulated data
+    req.on('end', () => {
+        const newUser = JSON.parse(body);
+        console.log(newUser);
+
+        // add it to the list
+        userList.push(newUser);
+
+        // (optional) return new list
+        res.json(userList);
+    });
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+})</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\5.md">
+                        <a href="docs\express\5.md" target="_blank">docs\express\5.md</a>
+                        <div style="display:none"># 5
+
+Adding `app.use(express.json());` will allow your server  to parse JSON payloads sent in the body of POST requests, making `req.body` properly populated.
+
+eg. body
+
+    {
+    "name": "João",
+    "age": 2,
+    "isReal": true
+    }</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\5.mjs">
+                        <a href="docs\express\5.mjs" target="_blank">docs\express\5.mjs</a>
+                        <div style="display:none">// Responding to a POST with a JSON body
+// by using a middleware to parse the JSON
+
+import express from 'express';
+
+const app = express();
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+let userList = [
+    {
+        name: "Ric",
+        age: 31,
+        isDumb: true
+    },
+    {
+        name: "Ricarda",
+        age: 32,
+        isReal: false,
+        isDumb: true
+    },
+    {
+        name: "Maria",
+        age: -90,
+    }
+];
+
+app.get("/users", (req, res) => {
+    res.json(userList);
+});
+
+app.post("/users", (req, res) => {
+
+    console.log(`Received a ${req.method} request at the URL: ${req.url}`);
+    console.log("Request headers: " + JSON.stringify(req.headers, null, 2));
+    console.log("Request body: " + JSON.stringify(req.body, null, 2));
+
+    // read the data sent by the client
+    const newUser = req.body;
+    console.log(newUser);
+
+    // add it to the list
+    userList.push(newUser);
+
+    // (optional) return new list
+    res.json(userList);
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\6.mjs">
+                        <a href="docs\express\6.mjs" target="_blank">docs\express\6.mjs</a>
+                        <div style="display:none">// Responding to PUT (with a JSON body)
+
+import express from 'express';
+
+const app = express();
+app.use(express.json());
+
+let userList = [
+    {
+        id: 1,
+        name: "Ric",
+        age: 31,
+        isDumb: true
+    },
+    {
+        id: 2,
+        name: "Ricarda",
+        age: 32,
+        isReal: false,
+        isDumb: true
+    },
+    {
+        id: 3,
+        name: "Maria",
+        age: -90,
+    }
+];
+
+app.get("/users", (req, res) => {
+    res.json(userList);
+});
+
+app.get("/users/:id", (req, res) => {
+    const id = req.params.id;
+    const user = userList[id];
+    res.json(user);
+});
+
+app.post("/users", (req, res) => {
+    const newUser = req.body;
+    userList.push(newUser);
+    res.json(userList);
+});
+
+app.put("/users/:id", (req, res) => {
+
+    console.log(`Received a ${req.method} request at the URL: ${req.url}`);
+    console.log("Request headers: " + JSON.stringify(req.headers, null, 2));
+    console.log("Request body: " + JSON.stringify(req.body, null, 2));
+
+    // read the data
+    const newIsDumb = Boolean(req.body["this-person-is-dumb"]);
+    const newName = req.body.newName;
+
+    // update user
+    const id = req.params.id;
+    const filteredList = userList.filter(user => user.id == id);
+    const user = filteredList[0] // if the id really is unique
+    user.isDumb = newIsDumb;
+    user.name = newName;
+    console.log(user);
+
+    // (optional) return updated user
+    res.json(user);
+});
+
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\7.mjs">
+                        <a href="docs\express\7.mjs" target="_blank">docs\express\7.mjs</a>
+                        <div style="display:none">// Reponse to a DELETE
+
+import express from 'express';
+
+const app = express();
+app.use(express.json());
+
+let userList = [
+    {
+        name: "Ric",
+        age: 31,
+        isDumb: true
+    },
+    {
+        name: "Ricarda",
+        age: 32,
+        isReal: false,
+        isDumb: true
+    },
+    {
+        name: "Maria",
+        age: -90,
+    }
+];
+
+app.get("/users", (req, res) => {
+    res.json(userList);
+});
+
+app.delete("/users/:id", (req, res) => {
+    const id = Number(req.params.id);
+
+    const ind = userList.findIndex(user => user.id == id);
+    userList.splice(ind, 1);
+    // or just use filter or smt like that
+    // userList = userList.filter(user => user.id != id)
+    res.json(userList);
+});
+
+app.delete("/users", (req, res) => {
+    // delete all
+
+    userList = [];
+
+    // (optional) return updated list
+    res.json(userList);
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\8.js">
+                        <a href="docs\express\8.js" target="_blank">docs\express\8.js</a>
+                        <div style="display:none">// Response methods
+
+const express = require('express');
+const app = express();
+
+app.get('/html', (req, res) => {
+    res.send('Hello world'); // sends a response of various types
+});
+
+const path = require('path'); // path module to create an absolute path to the file
+console.log(__dirname);
+console.log(__filename);
+
+app.get('/file1', (req, res) => {
+    const filePath = path.join(__dirname, '8.js');
+    res.sendFile(filePath); // sends a file
+});
+
+app.get('/file2', (req, res) => {
+    res.sendFile('8.js', { root: __dirname }); // sends a file
+});
+
+app.get('/download', (req, res) => {
+    const filePath = path.join(__dirname, '8.js');
+    res.download(filePath, (err) => {
+        if (err) {
+            console.error('File download error:', err);
+            res.status(500).send('Error downloading file');
+        }
+    });
+});
+
+app.get('/json', (req, res) => {
+    const obj = {
+        name: 'Ricard',
+        age: 31
+    };
+    const json_str = JSON.stringify(obj);
+
+    res.json(json_str); // sends a json string
+});
+
+app.get('/google', (req, res) => {
+    res.redirect('www.google.com'); // redirects
+});
+
+app.get('/stop', (req, res) => {
+    res.write("<p>smt smt</p>");
+    res.write("<p>more stuff</p>");
+    res.end('Done...'); // stops the response process
+});
+
+app.get('/404', (req, res) => {
+    res.sendStatus(404); // sends status as teh response body
+    // equivalent to res.status(404).send('Not Found')
+});
+
+const PORT = 3001;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}/`)
+})</div>
+                    </li>
+<li class="file-content" data-file-name="docs\express\9.js">
+                        <a href="docs\express\9.js" target="_blank">docs\express\9.js</a>
+                        <div style="display:none">// Routing with express.Router
+
+const express = require('express');
+const app = express();
+
+const router = express.Router();
+
+router.use((req, res, next) => {
+    console.log('Time: ', Date.now());
+    next();
+});
+
+router.get('/', (req, res) => {
+    res.send('Book page...');
+});
+
+router.get('/about', (re, res) => {
+    res.send('About the book');
+});
+
+app.use('/book', router);
+
+app.get('/', (req, res) => {
+    res.send('Hello world');
+});
+
+app.get('/help', (req, res) => {
+    res.send('Need help!');
+})
+
+const PORT = 3001;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}/`)
+})</div>
+                    </li>
+<li class="file-content" data-file-name="docs\http\0.mjs">
+                        <a href="docs\http\0.mjs" target="_blank">docs\http\0.mjs</a>
+                        <div style="display:none">// The .mjs marks this file as using the ES6 module system
+// See the CommonJs and ES folders for an example
+
+import http from 'http';
+/*
+http module:
+Used for creating HTTP/1.1 servers.
+Simple to use and well-suited for most use cases where HTTP/2 features and encryption are not needed.
+
+Protocol: HTTP/1.1
+Security: No encryption
+Connection Handling: Sequential requests, multiple connections
+Header Compression: No
+Server Push: No
+Performance: Standard
+*/
+
+// create instance of the http server listening on a port
+/*
+you can choose any available port for your server to listen on
+
+Common Ports:
+Ports 0 to 1023 are well-known ports and are typically reserved for system services and well-known protocols (e.g., HTTP on port 80, HTTPS on port 443).
+Ports 1024 to 49151 are registered ports that can be used by user processes or applications.
+Ports 49152 to 65535 are dynamic or private ports, usually used for temporary purposes or private services.
+
+Choosing a Port:
+Make sure the port you choose is not already in use by another application on your machine.
+For development purposes, ports like 3000, 4000, or 5000 are commonly used.
+For production, choose a port that is appropriate for your deployment environment and not conflicting with other services.
+
+Permissions:
+On Unix-based systems, using ports below 1024 typically requires root or administrative privileges.
+Using higher-numbered ports (e.g., 3000, 4000) avoids this issue and is common in development environments.
+*/
+const PORT = 3000;
+
+const server = http.createServer(() => { console.log("Hello") });
+
+// start listening
+server.listen(PORT);
+console.log(`server is listening on http://localhost:${PORT}`)</div>
+                    </li>
+<li class="file-content" data-file-name="docs\http\1.mjs">
+                        <a href="docs\http\1.mjs" target="_blank">docs\http\1.mjs</a>
+                        <div style="display:none">import http from 'http';
+
+const PORT = 3000;
+
+const server = http.createServer((request, response) => {
+    // response.writeHead(200, { 'Content-Type': 'text/html' });
+    response.write("Hello World!");
+    response.end();
+});
+
+server.listen(PORT,
+    () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    }
+);</div>
+                    </li>
+<li class="file-content" data-file-name="docs\http\2.mjs">
+                        <a href="docs\http\2.mjs" target="_blank">docs\http\2.mjs</a>
+                        <div style="display:none">import http from 'http';
+
+const PORT = 3000;
+
+const server = http.createServer((request, response) => {
+    // response.writeHead(200, { 'Content-Type': 'text/plain' });
+    response.writeHead(200, { 'Content-Type': 'text/html' });
+    response.write("Hello World!");
+    response.end();
+});
+
+server.listen(PORT,
+    () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    }
+);</div>
+                    </li>
+<li class="file-content" data-file-name="docs\http\3.mjs">
+                        <a href="docs\http\3.mjs" target="_blank">docs\http\3.mjs</a>
+                        <div style="display:none">import http from 'http';
+import http2 from 'http2';
+
+// Define HTTP status codes
+const HttpCodes = {
+    ok: http2.constants.HTTP_STATUS_OK, // 200
+    notFound: http2.constants.HTTP_STATUS_NOT_FOUND // 404
+    // etc
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+    // https://www.iana.org/assignments/http-status-codes/http-status-codes.txt
+};
+
+// Define constants for HTTP header names
+const HttpHeaders = {
+    contentType: http2.constants.HTTP2_HEADER_CONTENT_TYPE // 'content-type'
+};
+
+// Define constants for common content types
+const ContentTypes = {
+    plain: 'text/plain',
+    html: 'text/html'
+};
+
+const PORT = 3000;
+
+const server = http.createServer((request, response) => {
+    // response.writeHead(HttpCodes.ok, {'Content-Type': 'text/html'})
+    response.writeHead(HttpCodes.ok, { [HttpHeaders.contentType]: ContentTypes.html })
+    response.write('<html><body>Hello "World"!</body></html>')
+    response.end()
+});
+
+server.listen(PORT,
+    () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    }
+);</div>
+                    </li>
+<li class="file-content" data-file-name="docs\http\4.mjs">
+                        <a href="docs\http\4.mjs" target="_blank">docs\http\4.mjs</a>
+                        <div style="display:none">import http from 'http';
+
+
+const PORT = 3000;
+
+let visitor_count = 0;
+
+const server = http.createServer((request, response) => {
+    // response.writeHead(HttpCodes.ok, {'Content-Type': 'text/html'})
+    response.statusCode = 200;
+    // response.statusMessage = "All good!" // change the default
+    response.setHeader("content-Type", "text/html"); // set mime type
+
+    visitor_count++;
+    response.write("You are visitor number <b>" + visitor_count.toString() + "</b>")
+    response.end()
+});
+
+server.listen(PORT,
+    () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    }
+);</div>
+                    </li>
+<li class="file-content" data-file-name="docs\http2\0.mjs">
+                        <a href="docs\http2\0.mjs" target="_blank">docs\http2\0.mjs</a>
+                        <div style="display:none">import http2 from 'http2';
+/*
+http2 module:
+Used for creating HTTP/2 servers.
+Provides performance improvements and advanced features like multiplexing, header compression, and server push.
+
+Protocol: HTTP/2 (also supports HTTP/1.1)
+Security: Encrypted with TLS/SSL (required for most browsers)
+Connection Handling: Multiplexed streams over a single connection
+Header Compression: Yes (HPACK compression)
+Server Push: Yes
+Performance: Improved performance with multiplexing and compression
+*/</div>
+                    </li>
+<li class="file-content" data-file-name="docs\https\0.mjs">
+                        <a href="docs\https\0.mjs" target="_blank">docs\https\0.mjs</a>
+                        <div style="display:none">import https from 'https';
+/*
+Use this module for secure HTTP/1.1 applications that require encryption (e.g., transmitting sensitive data)
+
+Protocol: HTTPS (HTTP/1.1 over TLS/SSL)
+Security: Encrypted with TLS/SSL
+Connection Handling: Sequential requests, multiple connections
+Header Compression: No
+Server Push: No
+Performance: Standard with encryption
+*/</div>
+                    </li>
+<li class="file-content" data-file-name="docs\mysql2\0.md">
+                        <a href="docs\mysql2\0.md" target="_blank">docs\mysql2\0.md</a>
+                        <div style="display:none"># environmental variables
+
+you run the scripts as usual (`node <file-name>.<file-extension>`) but first you need to set the environmental variables in your environmental variables file (`.env`).
+
+You set them like this:
+
+    USER_ID=root
+    HOST=localhost
+    USER_PASSWORD=password
+
+If working on Windows, that may give you an error as there can be no special characters.
+
+Use cat to make sure:
+
+`cat -A .env`
+
+The ^M characters at the end of each line in your .env file indicate that the file has Windows-style 
+line endings (CRLF), which can cause issues in Unix-based environments (like the one your shell script 
+is likely running in).
+
+These ^M characters (carriage return) need to be removed, leaving only Unix-style line endings (LF).
+You can use the `sed` command to remove the ^M characters:
+
+`sed -i 's/\r$//' .env`
+
+`cat -A .env`
+
+However, it if you are using VSCode, in the editor you can set the "End of Line Sequence" (CRLF is the default, LF is what you want ofr .env files).
+
+To load the .env i'm using the `dotenv` package
+
+Another option would be to run the `run.sh` script:
+
+`chmod +x run.sh`
+
+`./run.sh` OR `bash run.sh`
+
+Or simply:
+
+`bash -x run.sh`</div>
+                    </li>
+<li class="file-content" data-file-name="docs\mysql2\0.mjs">
+                        <a href="docs\mysql2\0.mjs" target="_blank">docs\mysql2\0.mjs</a>
+                        <div style="display:none">/*
+Example of
+the simplest SELECT query
+*/
+// node 0.mjs
+
+import express from 'express';
+
+// import mysql from 'mysql';
+// https://www.npmjs.com/package/mysql
+// npm i mysql
+// i'm not going to use this one
+
+import mysql2 from 'mysql2';
+// https://www.npmjs.com/package/mysql2
+// npm i mysql2
+// "mysql": "^3.0.0",
+
+// Load environment variables from .env file
+import dotenv from 'dotenv';
+dotenv.config();
+
+// Create a connection using environment variables
+const db = mysql2.createConnection({
+    user: process.env.USER_ID, // "root"
+    host: process.env.HOST, // "localhost"
+    password: process.env.USER_PASSWORD, // ""
+    database: process.env.DB // "mydb"
+});
+// https://nodejs.org/en/learn/command-line/how-to-read-environment-variables-from-nodejs
+console.log('User:', process.env.USER_ID);
+console.log('Host:', process.env.HOST);
+console.log('Password:', process.env.USER_PASSWORD ? '******' : '(empty)');
+console.log('Database:', process.env.DB);
+
+
+// Connect to the database - you don't need to do this explicitly
+/*
+db.connect((err) => {
+    if (err) {
+        console.error('Error connecting to the database:', err.stack);
+        return;
+    }
+    console.log('Connected to the database');
+});
+*/
+
+const app = express();
+app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.send('Server is up and running');
+});
+
+const tUsers = `${process.env.DB}.users`;
+
+// define the /users route
+app.get("/users", (req, res) => {
+    db.query(`SELECT * FROM ${tUsers};`, (err, result) => {
+
+        if (err) {
+            res.status(400);
+            res.json(err);
+        } else {
+            res.status(200);
+            res.json(result);
+        }
+    })
+});
+
+const tNotReal = `${process.env.DB}.doesnotexist`;
+// table that does not exist
+app.get("/tableDoesNotExist", (req, res) => {
+    db.query(`SELECT * FROM ${tNotReal};`, (err, result) => {
+
+        if (err) {
+            res.status(400);
+            res.json(err);
+        } else {
+            res.status(200);
+            res.json(result);
+        }
+    })
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\mysql2\1.mjs">
+                        <a href="docs\mysql2\1.mjs" target="_blank">docs\mysql2\1.mjs</a>
+                        <div style="display:none">/*
+Example of
+POST query
+without worrying about SQL injections
+*/
+
+import express from 'express';
+import mysql2 from 'mysql2';
+import dotenv from 'dotenv';
+// "dotenv": "^16.0.0",
+dotenv.config();
+
+const db = mysql2.createConnection({
+    user: process.env.USER_ID,
+    host: process.env.HOST,
+    password: process.env.USER_PASSWORD,
+    database: process.env.DB
+});
+
+const app = express();
+app.use(express.json());
+
+const tUsers = `${process.env.DB}.users`;
+
+app.get("/users", (req, res) => {
+    db.query(`SELECT * FROM ${tUsers};`, (err, result) => {
+
+        if (err) {
+            res.status(400);
+            res.json(err);
+        } else {
+            res.status(200);
+            res.json(result);
+        }
+    })
+});
+
+app.post("/users", (req, res) => {
+    // table schema
+    const tCols = {
+        name: 'name',
+        age: 'age'
+    }
+
+    // data to post
+    /*
+    const name = req.body.name;
+    const age= req.body.age;
+    */
+    const { name, age } = req.body;
+
+    // "INSERT INTO users (name, age) VALUES ('Furu', 18)"
+    db.query(`INSERT INTO ${tUsers} (${tCols.name}, ${tCols.age}) VALUES (${name}, ${age})`, (err, result) => {
+        if (err) {
+            res.status(400);
+            res.json(err);
+        } else {
+            res.status(200);
+            res.json(result);
+        }
+    })
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\mysql2\2.mjs">
+                        <a href="docs\mysql2\2.mjs" target="_blank">docs\mysql2\2.mjs</a>
+                        <div style="display:none">/*
+Example of
+POST query
+with some security
+*/
+
+import express from 'express';
+import mysql2 from 'mysql2';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const db = mysql2.createConnection({
+    user: process.env.USER_ID,
+    host: process.env.HOST,
+    password: process.env.USER_PASSWORD,
+    database: process.env.DB
+});
+
+const app = express();
+app.use(express.json());
+
+const tUsers = `${process.env.DB}.users`;
+
+app.get("/users", (req, res) => {
+    db.query(`SELECT * FROM ${tUsers};`, (err, result) => {
+
+        if (err) {
+            res.status(400);
+            res.json(err);
+        } else {
+            res.status(200);
+            res.json(result);
+        }
+    })
+});
+
+app.post("/users", (req, res) => {
+
+    const tCols = {
+        name: 'name',
+        age: 'age'
+    }
+    const { name, age } = req.body;
+
+    // "INSERT INTO users (name, age) VALUES ('Furu', 18)"
+    // `INSERT INTO ${tUsers} (${tCols.name}, ${tCols.age}) VALUES (${name}, ${age})`
+    db.query(`INSERT INTO ${tUsers} (${tCols.name}, ${tCols.age}) VALUES (?, ?)`, [name, age], (err, result) => {
+        if (err) {
+            res.status(400);
+            res.json(err);
+        } else {
+            res.status(200);
+            res.json(result);
+        }
+    })
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+});</div>
+                    </li>
+<li class="file-content" data-file-name="docs\npm.md">
+                        <a href="docs\npm.md" target="_blank">docs\npm.md</a>
+                        <div style="display:none"># npm cli
+
+This refers to npm cli ^10.0.0
+
+which means, version 10.0.0 or later but less than version 11.0.0
+
+https://docs.npmjs.com/cli/v10
+
+## npm
+
+`npm --version`
+
+## npm-docs
+
+Open documentation for a package in a web browser
+
+`npm docs [<pkgname> [<pkgname> ...]]`
+
+## npm-init
+
+Create a package.json file
+
+`npm init <package-spec>` (same as `npx <package-spec>`)
+
+If the initializer is omitted (by just calling npm init), init will fall back to legacy init behavior. It will ask you a bunch of questions, and then write a package.json for you. It will attempt to make reasonable guesses based on existing fields, dependencies, and options selected. It is strictly additive, so it will keep any fields and values that were already set. You can also use -y/--yes to skip the questionnaire altogether.
+
+`npm init`
+
+`npm init -y`
+
+## npm-install
+
+Install a package
+
+`npm install [<package-spec> ...]`
+
+aliases: add, i
+
+***
+
+`npm install` (in a package directory, no arguments):
+
+OR `npm i`
+
+Install the dependencies to the local node_modules folder.
+
+***
+
+`npm install <package>@<version>`
+
+to install a specific version `<version>` of `<package>` 
+
+The version uses a specific syntax (semantic versioning):
+
+MAJOR.MINOR.PATCH
+
+eg. if you want to install express v1.2.3
+
+`npm i express@1.2.3`
+
+to install the latest stable version
+
+`npm i express@latest`
+
+to install the most recent release (generally not a good idea or needed unless you are helping with open source projects)
+
+`npm i express@next`
+
+to install the latest version of a.x.x (> a.0.0 and < a+1.0.0)
+= caret dependency
+
+`npm i express@^4.0.0` # requires version 4.0.0 or later but less than version 5.0.0
+
+OR
+
+`npm i express@^4.x`
+
+This is generally the best option because it chooses versions without vulnerabilities and there are no compatibility issues
+
+to install the latest version of a.b.x (>a.b.0 and < a.b+1.0 )
+
+`npm i express@~4.1.0`
+
+OR
+
+`npm i express@~4.1.x`
+
+## npm-uninstall
+
+Remove a package
+
+`npm uninstall [<@scope>/]<pkg>...`
+
+aliases: unlink, remove, rm
+
+This uninstalls a package, completely removing everything npm installed on its behalf.
+
+It also removes the package from the dependencies, devDependencies, optionalDependencies, and peerDependencies objects in your package.json.
+
+## npm-ls
+
+List installed packages
+
+`npm ls <package-spec>`
+
+This command will print to stdout all the versions of packages that are installed, as well as their dependencies when --all is specified, in a tree structure.
+
+`npm ls`
+
+`npm ls --all` # shows sub-dependencies
+
+## npm-update
+
+Update packages
+
+`npm update [<pkg>...]`
+
+aliases: up, upgrade, udpate
+
+This command will update all the packages listed to the latest version (specified by the tag config), respecting the semver constraints of both your package and its dependencies (if they also require the same package).
+
+It will also install missing packages.
+
+
+## npm-outdated
+
+`npm outdated [<package-spec> ...]`
+
+This command will check the registry to see if any (or, specific) installed packages are currently outdated.
+
+By default, only the direct dependencies of the root project and direct dependencies of your configured workspaces are shown. Use --all to find all outdated meta-dependencies as well.
+
+## npm-run-script
+
+`npm run-script <command> [-- <args>]`
+
+aliases: run
+
+This runs an arbitrary command from a package's "scripts" object. If no "command" is provided, it will list the available scripts.
+
+`npm run`
+
+In addition to the shell's pre-existing PATH, npm run adds node_modules/.bin to the PATH provided to scripts. Any binaries provided by locally-installed dependencies can be used without the node_modules/.bin prefix.
+
+
+## npm-start
+
+`npm start [-- <args>]`
+
+This runs a predefined command specified in the "start" property of a package's "scripts" object.
+
+If the "scripts" object does not define a "start" property, npm will run node server.js
+
+eg.
+{
+  "scripts": {
+    "start": "node foo.js"
+  }
+}
+
+`npm start`
+
+## npm-version
+
+Bump a package version
+
+`npm version`
+
+`npm version patch -m "Upgrade to %s for reasons"`</div>
+                    </li>
+            </ul>
         </div>
     </div>
+	<div class="main-content">
+        <h2>DOCS:</h2>
+        <ul>
+            <li>
+                <h3>npm</h3>
+                <ul>
+                    <li>
+                        <a href="./docs/npm.md" target="_blank" rel="noopener noreferrer">npm.md</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>CommonJS</h3>
+                <ul>
+                    <li>
+                        <a href="./docs/CommonJS/operations.js" target="_blank"
+                            rel="noopener noreferrer">operations.js</a>
+                    </li>
+                    <li>
+                        <a href="./docs/CommonJS/operations.js" target="_blank" rel="noopener noreferrer">sum.js</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>ES6</h3>
+                <ul>
+                    <li>
+                        <a href="./docs/ES6/operations.mjs" target="_blank" rel="noopener noreferrer">operations.js</a>
+                    </li>
+                    <li>
+                        <a href="./docs/ES6/sum.mjs" target="_blank" rel="noopener noreferrer">sum.js</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>express</h3>
+                <ul>
+                    <li>
+                        Creating a server ("Express app")
+                        <br>
+                        <a href="./docs/express/0.js" target="_blank" rel="noopener noreferrer">0.js</a>
+                        <br>
+                        <a href="./docs/express/0.mjs" target="_blank" rel="noopener noreferrer">0.mjs</a>
+                        <br>
+                        <a href="./docs/express/0.md" target="_blank" rel="noopener noreferrer">0.md</a>
+                        <br>
+                        <a href="./docs/express/10.js" target="_blank" rel="noopener noreferrer">10.js</a>
+                    </li>
+                    <li>
+                        Responding to a incoming GET request on the root ('/')
+                        <br>
+                        <a href="./docs/express/1.js" target="_blank" rel="noopener noreferrer">1.js</a>
+                        <br>
+                        <a href="./docs/express/1.mjs" target="_blank" rel="noopener noreferrer">1.mjs</a>
+                        <br>
+                        <a href="./docs/express/1.md" target="_blank" rel="noopener noreferrer">1.md</a>
+                    </li>
+                    <li>
+                        responding to a GET on another route
+                        <br>
+                        <a href="./docs/express/2.js" target="_blank" rel="noopener noreferrer">2.js</a>
+                        <br>
+                        <a href="./docs/express/2.mjs" target="_blank" rel="noopener noreferrer">2.mjs</a>
+                    </li>
+                    <li>
+                        Response methods
+                        <br>
+                        <a href="./docs/express/8.js" target="_blank" rel="noopener noreferrer">8.js</a>
+                        <br>
+                        <a href="./docs/express/3.mjs" target="_blank" rel="noopener noreferrer">3.js</a>
+                        <br>
+                        <a href="./docs/express/3.mjs" target="_blank" rel="noopener noreferrer">3.mjs</a>
+                        <br>
+                        <a href="./docs/express/3.md" target="_blank" rel="noopener noreferrer">3.md</a>
+                    </li>
+                    <li>
+                        Responding to a POST with a JSON body by manually parsing the JSON
+                        <br>
+                        <a href="./docs/express/4.js" target="_blank" rel="noopener noreferrer">4.js</a>
+                        <br>
+                        <a href="./docs/express/4.mjs" target="_blank" rel="noopener noreferrer">4.mjs</a>
+                        <br>
+                        <a href="./docs/express/4.md" target="_blank" rel="noopener noreferrer">4.md</a>
+                    </li>
+                    <li>
+                        Responding to a POST with a JSON body by using a middleware to parse the JSON
+                        <br>
+                        <a href="./docs/express/5.js" target="_blank" rel="noopener noreferrer">5.js</a>
+                        <br>
+                        <a href="./docs/express/5.mjs" target="_blank" rel="noopener noreferrer">5.mjs</a>
+                        <br>
+                        <a href="./docs/express/5.md" target="_blank" rel="noopener noreferrer">5.md</a>
+                    </li>
+                    <li>
+                        Responding to PUT (with a JSON body)
+                        <br>
+                        <a href="./docs/express/6.js" target="_blank" rel="noopener noreferrer">6.js</a>
+                        <br>
+                        <a href="./docs/express/6.mjs" target="_blank" rel="noopener noreferrer">6.mjs</a>
+                    </li>
+                    <li>
+                        Reponse to a DELETE
+                        <br>
+                        <a href="./docs/express/7.js" target="_blank" rel="noopener noreferrer">7.js</a>
+                        <br>
+                        <a href="./docs/express/7.mjs" target="_blank" rel="noopener noreferrer">7.mjs</a>
+                    </li>
+                    <li>
+                        Routing with express.Router
+                        <br>
+                        <a href="./docs/express/9.js" target="_blank" rel="noopener noreferrer">9.js</a>
+                    </li>
+                    <li>
+                        Parsing request bodies
+                        <br>
+                        <a href="./docs/express/11.js" target="_blank" rel="noopener noreferrer">11.js</a>
+                        <br>
+                        <a href="./docs/express/11.md" target="_blank" rel="noopener noreferrer">11.md</a>
+                    </li>
+                    <li>
+                        Serving static files
+                        <br>
+                        <a href="./docs/express/12.js" target="_blank" rel="noopener noreferrer">12.js</a>
+                    </li>
+                    <li>
+                        Server-side rendering with EJS
+                        <br>
+                        <a href="./docs/express/13.js" target="_blank" rel="noopener noreferrer">13.js</a>
+                        <br>
+                        <a href="./docs/express/13.md" target="_blank" rel="noopener noreferrer">13.md</a>
+                    </li>
+                    <li>
+                        Server-side rendering with express-handlebars
+                        <br>
+                        <a href="./docs/express/14.js" target="_blank" rel="noopener noreferrer">14.js</a>
+                    </li>
+                    <li>
+                        Cookies with cookie-parser
+                        <br>
+                        <a href="./docs/express/15.js" target="_blank" rel="noopener noreferrer">15.js</a>
+                        <br>
+                        <a href="./docs/express/15.md" target="_blank" rel="noopener noreferrer">15.md</a>
+                    </li>
+                    <li>
+                        Cookies with cookie-parser, signed version
+                        <br>
+                        <a href="./docs/express/16.js" target="_blank" rel="noopener noreferrer">16.js</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>http</h3>
+                <ul>
+                    <li>
+                        <a href="./docs/http/0.mjs" target="_blank" rel="noopener noreferrer">0.mjs</a>
+                    </li>
+                    <li>
+                        <a href="./docs/http/1.mjs" target="_blank" rel="noopener noreferrer">1.mjs</a>
+                    </li>
+                    <li>
+                        <a href="./docs/http/2.mjs" target="_blank" rel="noopener noreferrer">2.mjs</a>
+                    </li>
+                    <li>
+                        <a href="./docs/http/3.mjs" target="_blank" rel="noopener noreferrer">3.mjs</a>
+                    </li>
+                    <li>
+                        <a href="./docs/http/4.mjs" target="_blank" rel="noopener noreferrer">4.mjs</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>mysql2</h3>
+                <ul>
+                    <li>
+                        <a href="./docs/mysql2/0.mjs" target="_blank" rel="noopener noreferrer">0.mjs</a>
+                        <br>
+                        <a href="./docs/mysql2/0.md" target="_blank" rel="noopener noreferrer">0.md</a>
+                    </li>
+                    <li>
+                        <a href="./docs/mysql2/1.mjs" target="_blank" rel="noopener noreferrer">1.mjs</a>
+                    </li>
+                    <li>
+                        <a href="./docs/mysql2/2.mjs" target="_blank" rel="noopener noreferrer">2.mjs</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+	</div>
+    <script src="index.js"></script>
 </body>
-
 </html>

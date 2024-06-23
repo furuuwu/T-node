@@ -1,3 +1,4 @@
+/*
 const repoOwner = 'furuuwu';  // Replace with your GitHub username
 const repoName = 't-node';       // Replace with your GitHub repository name
 
@@ -48,3 +49,19 @@ async function searchFiles() {
 
     await searchInFiles();
 }
+*/
+
+// JavaScript code to handle search and file content display
+function filterPosts() {
+    let filterValue = document.getElementById('searchInput').value.toLowerCase();
+    const posts = document.querySelectorAll('.file-content');
+
+    for (let post of posts) {
+        // Check if the file content includes the search query
+        post.querySelector('div').innerText.toLowerCase().includes(filterValue)
+            ? post.style.display = ''
+            : post.style.display = 'none';
+    }
+}
+
+document.getElementById('searchInput').addEventListener('keyup', filterPosts);

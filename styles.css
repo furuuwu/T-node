@@ -30,7 +30,7 @@ body {
     /* Example background color */
 
     margin: 20px;
-    max-height: calc(20 * 1.2em);
+    max-height: calc(50 * 1.2em);
     /* Adjust line height based on your design */
     overflow: hidden;
     text-overflow: ellipsis;
@@ -41,16 +41,19 @@ body {
     text-align: right;
 }
 
-/*
-.container {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    text-align: right;
+.results ul::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(240, 240, 240, 1), rgba(240, 240, 240, 0));
+    pointer-events: none;
+    /* Allow interaction with elements behind the gradient */
+    z-index: 1;
+    /* Ensure the gradient is above the container content */
 }
-*/
 
 .results ul {
     list-style-type: none;
@@ -59,6 +62,10 @@ body {
     /* Remove default padding */
     margin: 0;
     /* Remove default margin */
+
+    /* Add a transparent linear gradient */
+    position: relative;
+    /* Ensure the gradient is positioned correctly */
 }
 
 .results li {
